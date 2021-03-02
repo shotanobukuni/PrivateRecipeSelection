@@ -1,30 +1,27 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import './App.css';
-import axios from 'axios'
 import SelectRecipe from './components/SelectRecipe';
-import RecipeList from './components/RecipeList';
 
 function App() {
-  // バックエンドAPIバージョン
-  const APIVersion = 'v1';
-  const [recipeId, setRecipeId] = useState([])
-  const [recipes, setRecipes] = useState([])
-  const [recipeListButton, setRecipeListButton] = useState(false)
-  const switchRecipeListButton = () => {
-    setRecipeListButton(!recipeListButton)
-  }
-  useEffect(() => {
-    axios.get(`http://127.0.0.1:8000/api/${APIVersion}/recipes/`)
-    .then(res => {setRecipes(res.data)})
-  }, [])
+  // メニュー選定ボタンのON/OFF状態管理
+  const [selectRecipeButton, setSelectRecipeButton] = useState(false);
+  const toggleSelectRecipeButton = () => {
+    setSelectRecipeButton(!selectRecipeButton)
+  };
   return (
       <div className="App">
       <header className="App-header">
-          {recipeListButton ?
-            <RecipeList />:
-            <button onClick={() => switchRecipeListButton()}>レシピ一覧へ</button>
-          }
-          <button>メニューを決める</button>
+          {!selectRecipeButton ? (
+          <div>
+            <h2>今日のメニューを決めてみよう</h2>
+            <button onClick={toggleSelectRecipeButton}>メニューを決める</button>
+          </div>
+          ): (
+          <div>
+            <SelectRecipe />
+            <button onClick={toggleSelectRecipeButton}>Topに戻る</button>
+          </div>
+          )}
       </header>
     </div>
     

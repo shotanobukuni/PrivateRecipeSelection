@@ -3,9 +3,8 @@ import React from 'react'
 function SelectRecipe() {
     return (
         <div>
-            <h2>食べたいものが決まらない?</h2>
-            <h2>そんな時は下をクリック!!</h2>
-            <button>メニューを決める</button>
+            <h2>今日のメニューはこちら</h2>
+            <h2>もう一度やる場合はTopへ戻ってください</h2>
         </div>
     )
 }
