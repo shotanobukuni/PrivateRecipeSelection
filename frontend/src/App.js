@@ -1,27 +1,30 @@
-import React, {useState} from 'react'
+import { BrowserRouter, Route, Link, Switch } from 'react-router-dom';
 import './App.css';
+import CreateRecipe from './components/CreateRecipe';
+import RecipeList from './components/RecipeList';
 import SelectRecipe from './components/SelectRecipe';
 
 function App() {
-  // メニュー選定ボタンのON/OFF状態管理
-  const [selectRecipeButton, setSelectRecipeButton] = useState(false);
-  const toggleSelectRecipeButton = () => {
-    setSelectRecipeButton(!selectRecipeButton)
-  };
   return (
       <div className="App">
       <header className="App-header">
-          {!selectRecipeButton ? (
-          <div>
-            <h2>今日のメニューを決めてみよう</h2>
-            <button onClick={toggleSelectRecipeButton}>メニューを決める</button>
-          </div>
-          ): (
-          <div>
-            <SelectRecipe />
-            <button onClick={toggleSelectRecipeButton}>Topに戻る</button>
-          </div>
-          )}
+          {/* URIのルーティング */}
+          <BrowserRouter>
+            <Link to="/">Top画面へ</Link>
+            <Link to="/list">レシピ一覧画面へ</Link>
+            <Link to="/create">レシピ追加画面へ</Link>
+            <Switch>
+              <Route path="/list">
+                <RecipeList />
+              </Route>
+              <Route path="/create">
+                <CreateRecipe />
+              </Route>
+              <Route path="/">
+                <SelectRecipe /> 
+              </Route>
+            </Switch>
+          </BrowserRouter>
       </header>
     </div>
     

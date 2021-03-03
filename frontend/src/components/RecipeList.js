@@ -3,7 +3,7 @@ import React from 'react'
 function RecipeList() {
     return (
         <div>
-            <h2>レシピ一覧</h2>
+            <p>レシピ一覧</p>
         </div>
     )
 }
