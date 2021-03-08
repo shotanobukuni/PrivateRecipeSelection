@@ -1,16 +1,16 @@
-import React, {useContext} from 'react'
-import RecipesContext from './RecipeList'
+import React from 'react'
 
 function UpdateRecipe() {
-    const recipes = useContext(RecipesContext)
+    const updateRecipe = (recipe) => {
+
+        axios.put(`http://127.0.0.1:8000/api/${APIVersion}/recipes/${recipe.id}/`, recipe)
+        .then(res => {
+
+        })
+    }
     return (
         <div>
-            <p>context test</p>
-                {/* console.log({recipes}); */}
-                name : {recipes}
-                {/* context : {recipes.context} */}
-            <p>context test</p>
-            <button>更新</button>
+            <button onClick={updateRecipe()}>更新</button>
         </div>
     )
 }
